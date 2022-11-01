@@ -6,8 +6,9 @@ form.addEventListener("submit", e => {
   addTask();
 });
 
-function loadTasks() {
-  if (localStorage.getItem("tasks") == null) return;
+const loadTasks = () => {
+  if (localStorage.getItem("tasks") == null) 
+  return;
   
   let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
   

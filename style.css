@@ -95,7 +95,7 @@
       cursor: pointer;
     }
 
-    .app ul li i:hover {
+    .app_ul_li_i:hover {
       color: rgb(255, 82, 82);
     }
 

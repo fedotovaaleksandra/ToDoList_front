@@ -1,6 +1,7 @@
 window.onload = loadTasks;
 
-document.querySelector("form").addEventListener("submit", e => {
+const form = document.querySelector("form");
+form.addEventListener("submit", e => {
   e.preventDefault();
   addTask();
 });
@@ -24,6 +25,7 @@ function addTask() {
   const task = document.querySelector("form input");
   const list = document.querySelector("ul");
 
+  console.log(task.value);
   if (task.value === "") {
     alert("Please add some task!");
     return false;

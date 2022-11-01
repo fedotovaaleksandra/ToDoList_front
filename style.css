@@ -90,12 +90,12 @@
       outline: none;
     }
 
-    .app_ul_li_i {
+    .app ul li i {
       float: right;
       cursor: pointer;
     }
 
-    .app_ul_li_i:hover {
+    .app ul li i:hover {
       color: rgb(255, 82, 82);
     }
 

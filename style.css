@@ -22,7 +22,7 @@
       font-size: 40px;
       padding: 10px 0;
       text-align: center;
-      border-radius: .5rpx .5rpx 0 0;
+      border-radius: 8px 8px 0 0;
       background-color: #6A5ACD;
       font-family: 'Open Sans', sans-serif;
     }
@@ -65,8 +65,8 @@
     }
 
     .check {
-      width: 0.8px;
-      height: 0.8px;
+      width: 12.8px;
+      height: 12.8px;
       cursor: pointer;
       border-radius: 50%;
       background-color: white;

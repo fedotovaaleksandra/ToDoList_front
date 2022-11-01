@@ -52,13 +52,13 @@
       width: 10%;
     }
 
-    .app ul {
+    .app_ul {
       list-style: none;
       color: #e0e0e0;
       padding: 0;
     }
 
-    .app ul li {
+    .app_ul_li {
       padding: 10px;
       background-color: #262e4c;
       border-bottom: 1px solid #3a4674;
@@ -90,12 +90,12 @@
       outline: none;
     }
 
-    .app ul li i {
+    .app_ul_li_i {
       float: right;
       cursor: pointer;
     }
 
-    .app ul li i:hover {
+    .app_ul_li_i:hover {
       color: rgb(255, 82, 82);
     }
 

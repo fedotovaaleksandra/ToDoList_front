@@ -5,7 +5,7 @@ form.addEventListener("submit", e => {
   addTask();
 });
 
-const loadTasks = () => {
+function loadTasks() {
   if (localStorage.getItem("tasks") == null) 
   return;
   
@@ -20,7 +20,7 @@ const loadTasks = () => {
     list.insertBefore(li, list.children[0]);
   });
 }
-loadTasks();
+//loadTasks();
 
 function addTask() {
   const task = document.querySelector("form input");

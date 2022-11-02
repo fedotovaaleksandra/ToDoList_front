@@ -103,6 +103,11 @@
       color: rgba(192, 192, 192, 0.8);
       text-decoration: line-through;
     }
+
+    .fa_fa-trash {
+      width: 30px;
+      height: 30px;
+    }
     @media (max-width:768px) {
       .app {
         width: 90%;

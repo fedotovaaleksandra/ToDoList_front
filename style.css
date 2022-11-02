@@ -90,7 +90,7 @@
       outline: none;
     }
 
-    .app ul li i {
+    .app_ul_li_i {
       float: right;
       cursor: pointer;
     }

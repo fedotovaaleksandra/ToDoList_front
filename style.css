@@ -108,6 +108,11 @@
       width: 30px;
       height: 30px;
     }
+
+    .tasks__icon{
+      width: 30px;
+      height: 30px;
+    }
     @media (max-width:768px) {
       .app {
         width: 90%;

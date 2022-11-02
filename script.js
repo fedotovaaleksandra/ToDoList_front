@@ -20,6 +20,7 @@ const loadTasks = () => {
     list.insertBefore(li, list.children[0]);
   });
 }
+loadTasks();
 
 function addTask() {
   const task = document.querySelector("form input");

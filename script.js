@@ -1,3 +1,5 @@
+let allTasks = [];
+
 const form = document.querySelector("form");
 form.addEventListener("submit", e => {
   addTask();
@@ -9,15 +11,28 @@ const loadTasks = () => {
   
   let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
   
-  tasks.forEach(task => {
-    const list = document.querySelector("ul");
-    const li = document.createElement("li");
-    li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
-    <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
-    <i class="fa_fa-trash" onclick="removeTask(this)"><img class="tasks__icon" src="./icons/trash-alt.svg" alt="Delete"></i>`;
-    list.insertBefore(li, list.children[0]);
-  });
-}
+  render = () => {
+    const content = document.getElementById('');
+    while(content.firstChild) {
+      content.removeChild(content.firstChild);
+    }
+    allTasks.sort((a, b) => a.isCheck > b.isCheck ? 1 : a.isCheck < b.isCheck ? -1 : 0);
+    allTasks.map((item, index) => {
+      const li = document.createElement(li);
+      
+    })
+  }
+
+
+//   tasks.forEach(task => {
+//     const list = document.querySelector("ul");
+//     const li = document.createElement("li");
+//     li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
+//     <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
+//     <i class="fa_fa-trash" onclick="removeTask(this)"><img class="tasks__icon" src="./icons/trash-alt.svg" alt="Delete"></i>`;
+//     list.insertBefore(li, list.children[0]);
+//   });
+ }
 //loadTasks();
 window.onload = loadTasks;
 

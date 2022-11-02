@@ -18,22 +18,72 @@ const loadTasks = () => {
     }
     allTasks.sort((a, b) => a.isCheck > b.isCheck ? 1 : a.isCheck < b.isCheck ? -1 : 0);
     allTasks.map((item, index) => {
+      const ul = document.querySelector(ul);
       const li = document.createElement(li);
+      li.id = `task-${ index }`;
+      li.className = 'li';
+      ul.appendChild(li);
+
+      const input = document.createElement(input);
+      input.className = 'input';
+      input.type = 'text';
+      input.value = item.text;
+      li.appendChild(input);
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = item.isCheck;
+      checkbox.onchange = function () {
+        onChangeCheckBox(index);
+      };
+
+      li.appendChild(checkbox);
+
+      button.appendChild(img);
+      li.appendChild(button)
       
+      if (index === activeEditTask) {
+        const inputTask = document.createElement('input');
+        inputTask.type = 'text';
+        inputTask.value = item.text;
+        inputTask.addEventListener('change', updateTaskText);
+        inputTask.addEventListener('blur', doneEditTask);
+        li.appendChild(inputTask);
+      } else {
+        const text = document.createElement('p');
+        text.innerText = item.text;
+        text.className = item.isCheck ? 'хзчтописать' : 'text-task';
+        li.appendChild(text);
+      }
+
+      if(!item.isCheck) {
+        if (index === activeEditTask) {
+          const imageDone = document.createElement('img');
+          imageDone.src = './icons/trash-alt.svg';
+          imageDone.onclick = function () {
+            doneEditTask();
+          };
+         li.appendChild(imageDone);
+        } else {
+          //const imageEdi
+        }
+      }
     })
   }
+}
 
-
-//   tasks.forEach(task => {
-//     const list = document.querySelector("ul");
-//     const li = document.createElement("li");
-//     li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
-//     <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
-//     <i class="fa_fa-trash" onclick="removeTask(this)"><img class="tasks__icon" src="./icons/trash-alt.svg" alt="Delete"></i>`;
-//     list.insertBefore(li, list.children[0]);
-//   });
- }
-//loadTasks();
+/*   tasks.forEach(task => {
+     const list = document.querySelector("ul");
+     const li = document.createElement("li");
+     li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
+     <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
+     <i class="fa_fa-trash" onclick="removeTask(this)">
+      <img class="tasks__icon" src="./icons/trash-alt.svg" alt="Delete">
+    </i>`;
+     list.insertBefore(li, list.children[0]);
+   });
+ }*/
+loadTasks();
 window.onload = loadTasks;
 
 function addTask() {

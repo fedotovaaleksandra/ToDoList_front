@@ -1,11 +1,9 @@
-window.onload = loadTasks;
-
 const form = document.querySelector("form");
 form.addEventListener("submit", e => {
   addTask();
 });
 
-function loadTasks() {
+const loadTasks = () => {
   if (localStorage.getItem("tasks") == null) 
   return;
   
@@ -21,6 +19,7 @@ function loadTasks() {
   });
 }
 //loadTasks();
+window.onload = loadTasks;
 
 function addTask() {
   const task = document.querySelector("form input");
@@ -39,11 +38,11 @@ function addTask() {
   
   localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: task.value, completed: false }]));
   
-  const li = document.createElement("li");
-  li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
+  const app_ul_li = document.createElement("li");
+  app_ul_li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
   <input type="text" value="${task.value}" class="task" onfocus="getCurrentTask(this)" onblur="editTask(this)">
   <i class="fa fa-trash" onclick="removeTask(this)"></i>`;
-  list.insertBefore(li, list.children[0]);
+  list.insertBefore(app_ul_li, list.children[0]);
   task.value = "";
 }
 

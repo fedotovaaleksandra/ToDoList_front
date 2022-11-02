@@ -13,11 +13,11 @@ function loadTasks() {
   
   tasks.forEach(task => {
     const list = document.querySelector("ul");
-    const li = document.createElement("li");
-    li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
+    const app_ul_li = document.createElement("li");
+    app_ul_li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check" ${task.completed ? 'checked' : ''}>
     <input type="text" value="${task.task}" class="task ${task.completed ? 'completed' : ''}" onfocus="getCurrentTask(this)" onblur="editTask(this)">
     <i class="fa fa-trash" onclick="removeTask(this)"></i>`;
-    list.insertBefore(li, list.children[0]);
+    list.insertBefore(app_ul_li, list.children[0]);
   });
 }
 //loadTasks();

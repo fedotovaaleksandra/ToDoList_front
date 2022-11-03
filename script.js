@@ -59,14 +59,27 @@ const loadTasks = () => {
       if(!item.isCheck) {
         if (index === activeEditTask) {
           const imageDone = document.createElement('img');
-          imageDone.src = './icons/trash-alt.svg';
+          imageDone.src = './icons/.svg';
           imageDone.onclick = function () {
             doneEditTask();
           };
          li.appendChild(imageDone);
         } else {
-          //const imageEdi
+          const imageEdit = document.createElement('img');
+          imageEdit.src = 'icons/edit.svg';
+          imageEdit.onclick = function () {
+            activeEditTask = index;
+            render();
+          };
+          li.appendChild(imageEdit);
         }
+
+        const imageDelete = document.createElement('img');
+        imageDelete.src = 'icons/trash-alt.svg';
+        imageDelete.onclick = function () {
+          onDeleteTask(index); 
+        }
+        li.appendChild(imageDelete);
       }
     })
   }
@@ -88,7 +101,7 @@ window.onload = loadTasks;
 
 function addTask() {
   const task = document.querySelector("form input");
-  const list = document.querySelector("ul");
+  const ul = document.querySelector("ul");
 
   console.log(task.value);
   if (task.value === "") {
@@ -103,6 +116,78 @@ function addTask() {
   
   localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: task.value, completed: false }]));
   
+  render = () => {
+    const content = document.getElementById('');
+    while(content.firstChild) {
+      content.removeChild(content.firstChild);
+    }
+    allTasks.sort((a, b) => a.isCheck > b.isCheck ? 1 : a.isCheck < b.isCheck ? -1 : 0);
+    allTasks.map((item, index) => {
+      const ul = document.querySelector(ul);
+      const li = document.createElement(li);
+      li.id = `task-${ index }`;
+      li.className = 'li';
+      ul.appendChild(li);
+
+      const input = document.createElement(input);
+      input.className = 'input';
+      input.type = 'text';
+      input.value = item.text;
+      li.appendChild(input);
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = item.isCheck;
+      checkbox.onchange = function () {
+        onChangeCheckBox(index);
+      };
+
+      li.appendChild(checkbox);
+
+      button.appendChild(img);
+      li.appendChild(button)
+      
+      if (index === activeEditTask) {
+        const inputTask = document.createElement('input');
+        inputTask.type = 'text';
+        inputTask.value = item.text;
+        inputTask.addEventListener('change', updateTaskText);
+        inputTask.addEventListener('blur', doneEditTask);
+        li.appendChild(inputTask);
+      } else {
+        const text = document.createElement('p');
+        text.innerText = item.text;
+        text.className = item.isCheck ? 'хзчтописать' : 'text-task';
+        li.appendChild(text);
+      }
+
+      if(!item.isCheck) {
+        if (index === activeEditTask) {
+          const imageDone = document.createElement('img');
+          imageDone.src = './icons/.svg';
+          imageDone.onclick = function () {
+            doneEditTask();
+          };
+         li.appendChild(imageDone);
+        } else {
+          const imageEdit = document.createElement('img');
+          imageEdit.src = 'icons/edit.svg';
+          imageEdit.onclick = function () {
+            activeEditTask = index;
+            render();
+          };
+          li.appendChild(imageEdit);
+        }
+
+        const imageDelete = document.createElement('img');
+        imageDelete.src = 'icons/trash-alt.svg';
+        imageDelete.onclick = function () {
+          onDeleteTask(index); 
+        }
+        li.appendChild(imageDelete);
+      }
+    })
+  }
   /*const li = document.createElement("li");
   li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
   <input type="text" value="${task.value}" class="task" onfocus="getCurrentTask(this)" onblur="editTask(this)">

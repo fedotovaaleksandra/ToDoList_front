@@ -103,14 +103,14 @@ function addTask() {
   
   localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: task.value, completed: false }]));
   
-  const li = document.createElement("li");
+  /*const li = document.createElement("li");
   li.innerHTML = `<input type="checkbox" onclick="taskComplete(this)" class="check">
   <input type="text" value="${task.value}" class="task" onfocus="getCurrentTask(this)" onblur="editTask(this)">
   <i class="fa_fa-trash" onclick="removeTask(this)">
   <img class="tasks__icon" src="./icons/trash-alt.svg" alt="Delete">
   </i>`;
   list.insertBefore(li, list.children[0]);
-  task.value = "";
+  task.value = "";*/
 }
 
 function taskComplete(event) {

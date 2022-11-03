@@ -84,7 +84,6 @@ const loadTasks = () => {
     })
   }
 }
-
 /*   tasks.forEach(task => {
      const list = document.querySelector("ul");
      const li = document.createElement("li");

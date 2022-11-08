@@ -53,7 +53,6 @@ const onDeleteTask = async(_id) => {
       }
     });
 
-  
     const result = await response.json();
     if (result.deletedCount !== 1) {
       alert('Ошибка удаления');
@@ -66,9 +65,11 @@ const onDeleteTask = async(_id) => {
   }
 }
 
-const doneEditTask = async (_id,textTask) => {
+
+
+const doneEditTask = async (_id, textTask) => {
   try {
-    const response = await (fetch(`${host}/${text}`), {
+    const response = await fetch(`${host}/text/${_id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -79,20 +80,21 @@ const doneEditTask = async (_id,textTask) => {
       }),
     });
     const result = await response.json();
-    allTasks.forEach((elem) => {
+    console.log(result);
+    allTasks.forEach(elem => {
       if (result._id === elem._id) {
         elem.text = result.text;
       }
     });
     render();
   } catch (error) {
-    alert('Ошибка изменения текста')
+    alert(error)
   }
 };
-const editTask = (_id) => {
+const editTask = (_id, text) => {
   const editedTask = document.getElementById(`textTask-${_id}`);
-  console.log(editedTask);
 
+  
   if (!editedTask) {
     return;
   }
@@ -103,20 +105,15 @@ const editTask = (_id) => {
   const editInput = document.createElement('input')
   editInput.className = 'editedText';
   editInput.type = 'text';
-  editInput.value = allTasks.find(item => item._id === _id);
+  editInput.value = text;
+
   editedTask.appendChild(editInput);
 
   const buttonApprove = document.createElement('button');
   buttonApprove.className = 'button'
   buttonApprove.onclick = () => {
-    approveChange(_id, editInput.value.text);
+    doneEditTask(_id, editInput.value);
   }   
-  const buttonCancel = document.createElement('button');
-  buttonCancel.className = 'button'
-  buttonCancel.onclick = () => {
-    showError('');
-    render();
-  }
 
   const imgApprove = document.createElement('img');
   imgApprove.className = 'task_icon';
@@ -124,15 +121,10 @@ const editTask = (_id) => {
   imgApprove.alt = 'Approve'
   buttonApprove.appendChild(imgApprove);
   editedTask.appendChild(buttonApprove);
-
-  const imgCancel = document.createElement('img');
-  imgCancel.className = 'tasks_icon';
-  imgCancel.src = 'icons/cancel.svg';
-  imgCancel.alt = 'Cancel'
-  buttonCancel.appendChild(imgCancel);
-  editedTask.appendChild(buttonCancel);
   
 }
+
+
 
 const render = () => {
   const content = document.getElementById('content');
@@ -144,6 +136,7 @@ const render = () => {
   allTasks.map(item => {
     const {_id, text, isCheck } = item;
     const task = document.createElement("div")
+    task.className = "task"
     task.id = `textTask-${_id}`;
     content.appendChild(task);
 
@@ -153,12 +146,6 @@ const render = () => {
     textTask.innerText = text;
 
     task.appendChild(textTask);
-
-    // const input = document.createElement(input);
-    // input.className = 'input';
-    // input.type = 'text';
-    // input.value = item.text;
-    // li.appendChild(input);
 
     const checkbox = document.createElement('input');
    
@@ -172,56 +159,25 @@ const render = () => {
 
     const buttonEdit = document.createElement('button');
     const imageEdit = document.createElement('img');
+    imageEdit.className = 'container_trash';
     imageEdit.src = 'icons/pen.svg';
     imageEdit.alt = 'редактировать';
     buttonEdit.onclick = () => {
-      editTask(_id);
-      // render(); 
+      editTask(_id, text);
     };
     task.appendChild(buttonEdit);
     buttonEdit.appendChild(imageEdit);
 
     const buttonDelete = document.createElement('button');
     const imageDelete = document.createElement('img');
-    imageDelete.src = 'icons/cancel.svg';
+    imageDelete.src = 'icons/trash.svg';
+    imageDelete.className = 'container_trash';
     imageDelete.alt = 'удалить';
     buttonDelete.onclick = () => {
       onDeleteTask(_id); 
     }
     task.appendChild(buttonDelete);
-    buttonDelete.appendChild(imageDelete);
-
-    const id = task._id;
-    
-    if (_id === id) {
-      const inputEditTask = document.createElement('input');
-      inputEditTask.type = 'text';
-      inputEditTask.value = textTask;
-
-      content.appendChild(inputEditTask);
-
-      const buttonDone = document.createElement('button');
-      const imageDone = document.createElement('img');
-      imageDone.src = './icons/.svg';
-      buttonDone.onclick = () => {
-        id = null;
-        doneEditTask(_id, inputEditTask.value);
-      };
-
-     content.appendChild(buttonDone);
-     buttonDone.appendChild(imageDone);
-
-    } else {
-
-      // const text = document.createElement('p');
-      // text.id = `text-${_id}`;
-      // text.innerText = textTask;
-      // text.className = isCheck ? "text-task done" : "text-task";
-      // content.appendChild(text);
-    }
-    
-
-
+    buttonDelete.appendChild(imageDelete)
   })
 }
 const onChangeCheckbox = async (_id) => {

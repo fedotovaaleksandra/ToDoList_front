@@ -39,17 +39,20 @@
       font-size: 18px;
       color: white;
       padding: 10px;
-      width: 90%;
+      width: 96.7%;
     }
 
     .app_form_button {
+      margin: 0 auto;
+      display: block;
       border: none;
       color: white;
       background-color: #1dd2af;
       font-size: 25px;
       font-weight: 600;
       height: 42px;
-      width: 10%;
+      width: 100%;
+
     }
 
     .app_ul {
@@ -73,46 +76,37 @@
       border: 1px solid rgb(255, 255, 255);
     }
 
-    .check:checked {
-      background-color: #1dd2af;
-    }
-
     .task {
+      width: 100%;
       font-size: 18px;
-      padding: 0 10px;
-      width: fit-content;
       background: transparent;
       border: none;
-      color: #fff;
+      color: black;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
     }
 
     .task:focus {
       outline: none;
     }
 
-    .app_ul li i {
-      float: right;
-      cursor: pointer;
+    ._trash {
+      width: 20px;
+      height: 20px;
     }
-
-    .app_ul li i:hover {
-      color: rgb(255, 82, 82);
-    }
-
-    .completed {
-      color: rgba(192, 192, 192, 0.8);
-      text-decoration: line-through;
-    }
-
-    .fa_fa-trash {
-      width: 30px;
-      height: 30px;
-    }
-
+  
     .tasks_icon{
+      width: 20px;
+      height: 20px;
+    }
+    .button {
       width: 30px;
       height: 30px;
     }
+
     @media (max-width:768px) {
       .app {
         width: 90%;

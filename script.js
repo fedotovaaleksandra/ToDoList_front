@@ -65,8 +65,6 @@ const onDeleteTask = async(_id) => {
   }
 }
 
-
-
 const doneEditTask = async (_id, textTask) => {
   try {
     const response = await fetch(`${host}/text/${_id}`, {

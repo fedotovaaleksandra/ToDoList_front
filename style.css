@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+    * {
+      margin: 0
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+      background-color: #e1e3ea;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .app {
+      width: 60%;
+    }
+
+    .app_header {
+      color: white;
+      font-size: 40px;
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      background-color: #6A5ACD;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .app_form {
+      display: flex;
+      width: 100%;
+      background-color: #262e4c;
+    }
+
+    .app_form_input {
+      border: none;
+      background-color: #3c4979;
+      font-size: 18px;
+      color: white;
+      padding: 10px;
+      width: 96.7%;
+    }
+
+    .app_form_button {
+      margin: 0 auto;
+      display: block;
+      border: none;
+      color: white;
+      background-color: #1dd2af;
+      font-size: 25px;
+      font-weight: 600;
+      height: 42px;
+      width: 100%;
+
+    }
+
+    .app_ul {
+      list-style: none;
+      color: #e0e0e0;
+      padding: 0;
+    }
+
+    .app_ul_li {
+      padding: 10px;
+      background-color: #262e4c;
+      border-bottom: 1px solid #3a4674;
+    }
+
+    .check {
+      width: 12.8px;
+      height: 12.8px;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid rgb(255, 255, 255);
+    }
+
+    .task {
+      width: 100%;
+      font-size: 18px;
+      background: transparent;
+      border: none;
+      color: black;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .task:focus {
+      outline: none;
+    }
+
+    ._trash {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .tasks_icon{
+      width: 20px;
+      height: 20px;
+    }
+    .button {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width:768px) {
+      .app {
+        width: 90%;
+      }
+    }
